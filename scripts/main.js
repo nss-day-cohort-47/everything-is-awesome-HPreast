@@ -1,6 +1,7 @@
 console.log("hello beautiful")
 import { loadLegos, useLegos } from './legos/LegoData.js'
 import { makeLegoList } from './legos/LegoList.js';
+import { searchBar } from './legos/LegoList.js'
 
 const navElement = document.querySelector("nav");
 
@@ -52,3 +53,4 @@ const startEIA = () => {
 }
 
 startEIA();
+searchBar();
