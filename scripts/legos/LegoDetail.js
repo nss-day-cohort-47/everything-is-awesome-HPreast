@@ -3,8 +3,10 @@ import { invertColor } from './../helpers.js';
 export const LegoDetail = (brick) => {
 
   let block = `<section class="block-wrapper" style="background-color:#${brick.ColorHex}">
-              <h3>Name: ${brick.LegoName}</h3>
+              <h3>Name: ${brick.LegoName.toUpperCase()}</h3>
               <div class="block-years">Manufactured ${brick.YearFrom} - ${brick.YearTo}</div>
+              <div class="block-notes">${brick.Notes}</div>
+              </section>
               `;
   const link = brick.ColorstreamLinkImage;
   if (link) {
@@ -16,5 +18,15 @@ export const LegoDetail = (brick) => {
   } else {
     //false? return the block
     return block;
-  }
+  } 
+
+
+
+  // const note = brick.Notes;
+  // if (note) {
+  //   return `
+  //   <p>${brick.Notes}</p>`
+  // } else {
+  //   return block;
+  // }
 }
