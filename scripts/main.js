@@ -1,7 +1,7 @@
 console.log("hello beautiful")
 import { loadLegos, useLegos } from './legos/LegoData.js'
 import { makeLegoList } from './legos/LegoList.js';
-import { searchBar } from './legos/LegoList.js'
+// import { searchBar } from './legos/LegoList.js'
 
 const navElement = document.querySelector("nav");
 
@@ -24,6 +24,30 @@ selectElement.addEventListener("change", (select) => {
 		console.log("user wants to see legos made of ", material)
 	}
 })
+
+const searchBar = document.getElementById("legoSearch")
+searchBar.addEventListener("keydown", (event) => {
+	if (event.key === "Enter") {
+		const legoId = event.target.value
+		searchFilter(legoId);
+		console.log("User wants to see legos with id of", legoId)
+	}
+})
+// if statement that runs a live search, broken?
+// if (event.target.value === "legoSearch")
+const searchFilter = (legoId) => {
+	const searchArray = useLegos().filter(singleLego => {
+		if (singleLego.LegoId === legoId) {
+			return singleLego;
+		}
+	})
+	makeLegoList(searchArray);
+
+	if (searchArray.length === 0) {
+		document.querySelector("input[id='legoSearch']").value = `ID of ${legoId} not found`;
+		makeLegoList(useLegos());
+	}
+}
 
 const materialFilter = (material) => {
 	const materialArray = useLegos().filter(singleLego => {
@@ -53,4 +77,4 @@ const startEIA = () => {
 }
 
 startEIA();
-searchBar();
+// searchBar();
